@@ -1,0 +1,80 @@
+body {
+  background-color: #e6ecf0;
+}
+
+/* Nav styling */
+
+.navbar {
+  margin-bottom: 1rem;
+}
+
+.navbar a {
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  color: rgb(0, 47, 85);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.navbar-brand>img {
+  display: inline-block;
+  width: 20px;
+  margin-bottom: 2px;
+  margin-right: 5px;
+  border-radius: 2px;
+}
+
+ul.nav.navbar-nav li {
+  margin: 0 0.5rem;
+}
+
+.onboarding>.navbar {
+  background: linear-gradient(to right, #85bdf5, #92f1c2);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+
+.home-hero {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left:0;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  z-index: -1;
+  background-image: url(./images/warbler-hero.jpg);
+  background-size: cover;
+  display: flex;
+  color: white;
+  text-shadow: 0 0 5px black;
+  padding: 1rem;
+}
+
+#messages .list-group-item {
+  display:flex;
+  align-items: flex-start;
+  padding:7px 20px 12px;
+}
+
+#messages:not(.no-hover) .list-group-item:hover {
+  background-color:#e6ecf0;
+}
+
+.timeline-image {
+  border-radius: 50px;
+  height: 72px;
+  width: 72px;
+  margin: 2px 30px 10px 10px;
+}
+
+.btn:hover{
+  cursor: pointer;
+}
+
+a.btn.btn-danger{
+  color: white;
+}
