@@ -5,7 +5,7 @@ import UserAside from './UserAside';
 
 const  MessageTimeline = props=>{
     return (
-        <div className="row justify-content-center">
+        <div className="inside-homepage-message-container">
             <UserAside profileImageUrl={props.profileImageUrl} username={props.username}/>
             <MessageList/>
         </div>

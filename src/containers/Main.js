@@ -7,6 +7,8 @@ import { authUser } from '../store/actions/auth';
 import { removeError } from '../store/actions/errors';
 import withAuth from '../hocs/withAuth';
 import MessageForm from '../containers/MessageForm';
+import { Helmet } from 'react-helmet';
+
 
 const Main = props => {
     const { authUser, errors, removeError, currentUser } = props;
@@ -17,30 +19,46 @@ const Main = props => {
                     render={props => {
                         //this props contain information relater to our routes 
                         //objects like ---history--match--location--
-                        return <Homepage currentUser={currentUser} {...props} />
+                        return (
+                             <Homepage currentUser={currentUser} {...props} />
+                        )
                     }}>
                 </Route>
                 <Route exact path="/signin"
                     render={props =>
-                        <AuthFrom
-                            removeError={removeError}
-                            errors={errors}
-                            authUser={authUser}
-                            buttonText="Log in"
-                            heading="Welcome Back!"
-                            {...props} />
+                        (
+                            <div className="form-container">
+                                <Helmet>
+                                    <style>{'body { background-color: #ac3b61; }'}</style>
+                                </Helmet>
+                                <AuthFrom
+                                    signIn
+                                    removeError={removeError}
+                                    errors={errors}
+                                    authUser={authUser}
+                                    buttonText="Log in"
+                                    heading="Welcome Back!"
+                                    {...props} />
+                            </div>
+                        )
                     }>
                 </Route>
                 <Route exact path="/signup"
-                    render={props =>
-                        <AuthFrom
-                            removeError={removeError}
-                            errors={errors}
-                            signUp
-                            authUser={authUser}
-                            buttonText="Sign up"
-                            heading="Join Warbler Today"
-                            {...props} />
+                    render={props => (
+                        <div className="form-container">
+                            <Helmet>
+                                <style>{'body { background-color: #ac3b61; }'}</style>
+                            </Helmet>
+                            <AuthFrom
+                                removeError={removeError}
+                                errors={errors}
+                                signUp
+                                authUser={authUser}
+                                buttonText="Sign up"
+                                heading="Join Warbler Today"
+                                {...props} />
+                        </div>
+                    )
                     }>
                 </Route>
                 <Route path="/users/:id/messages/new"

@@ -7,7 +7,7 @@ export function configureStore(){
         compose(
             applyMiddleware(thunk),
             //below line is for debugging redux in chrome 
-            //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+            window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
         ));
     return store;
 };

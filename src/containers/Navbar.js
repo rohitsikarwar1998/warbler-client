@@ -12,16 +12,15 @@ class Navbar extends Component {
     }
     render() {
         return (
-            <nav className="navbar navbar-expand">
-                <div className="container">
+            <nav className="navbar">
                     <div className="navbar-header">
                         <Link to="/" className="navbar-brand">
                             <img src={logo} alt="warbler Home" />
-                            warbler Home
+                            <span>warbler Home</span>
                         </Link>
                     </div>
                     {this.props.currentUser.isAuthenticated ?
-                        (<ul className="nav navbar-nav navbar-right">
+                        (<ul >
                             <li>
                                 <Link to={`/users/${this.props.currentUser.user.id}/messages/new`}>New Message</Link>
                             </li>
@@ -29,7 +28,7 @@ class Navbar extends Component {
                                 <Link to='/' onClick={this.logout}>Log out</Link>
                             </li>
                         </ul>) :
-                        (<ul className="nav navbar-nav navbar-right">
+                        (<ul >
                             <li>
                                 <Link to="/signup">Sign Up</Link>
                             </li>
@@ -38,7 +37,6 @@ class Navbar extends Component {
                             </li>
                         </ul>)
                     }
-                </div>
             </nav>
         );
     }
