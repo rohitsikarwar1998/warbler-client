@@ -1,12 +1,14 @@
 import {combineReducers} from 'redux';
 import currentUser from './currentUser';
 import errors from './errors';
-import messages from './messages';
+import blogs from './blogs';
+import responses from './responses';
 
 const rootReducer = combineReducers({
     currentUser,
     errors,
-    messages
+    blogs,
+    responses,
 });
 
 export default rootReducer;

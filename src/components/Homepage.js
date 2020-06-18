@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import MessageTimeline from './MessageTimeline';
+import BlogTimeline from './BlogTimeline';
 
 
-const Homepage = ({ currentUser }) => {
+const Homepage = (props) => {
+    let {currentUser}=props;
     if (!currentUser.isAuthenticated)
         return (
             <div className="landing-page">
@@ -24,8 +25,8 @@ const Homepage = ({ currentUser }) => {
             </div>
         )
     else return (
-        <div className="homepage-message-container">
-            <MessageTimeline profileImageUrl={currentUser.user.profileImageUrl} username={currentUser.user.username} />
+        <div className="homepage-blog-container">
+            <BlogTimeline profileImageUrl={currentUser.user.profileImageUrl} username={currentUser.user.username} {...props}/>
         </div>
     )
 };

@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
-import { postNewMessage } from '../store/actions/messages';
+import { postNewBlog } from '../store/actions/blogs';
 // import { addError } from '../store/actions/errors';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 
 
-class MessageForm extends Component {
+class BlogForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            message: ''
+            blog: ''
         }
     }
 
     handleSubmit = e => {
         e.preventDefault();
-        this.props.postNewMessage(this.state.message);
-        this.setState({ message: '' });
+        this.props.postNewBlog(this.state.blog);
+        this.setState({ blog: '' });
         this.props.history.push('/');
     };
 
@@ -34,11 +34,11 @@ class MessageForm extends Component {
                     <textarea
                         type='text'
                         className='form-input'
-                        placeholder="Write something..."
-                        value={this.state.message}
-                        onChange={e => this.setState({ message: e.target.value })} />
+                        placeholder="Write something in html format..."
+                        value={this.state.blog}
+                        onChange={e => this.setState({ blog: e.target.value })} />
                     <button type='submit'>
-                        Add my message!
+                        Publish
                     </button>
                 </form>
             </div>
@@ -52,5 +52,5 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, { postNewMessage })(MessageForm);
+export default connect(mapStateToProps, { postNewBlog })(BlogForm);
 

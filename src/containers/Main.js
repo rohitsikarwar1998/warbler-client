@@ -6,7 +6,8 @@ import AuthFrom from '../components/AuthForm';
 import { authUser } from '../store/actions/auth';
 import { removeError } from '../store/actions/errors';
 import withAuth from '../hocs/withAuth';
-import MessageForm from '../containers/MessageForm';
+import BlogForm from '../containers/BlogForm';
+import Blog from './Blog';
 import { Helmet } from 'react-helmet';
 
 
@@ -20,7 +21,7 @@ const Main = props => {
                         //this props contain information relater to our routes 
                         //objects like ---history--match--location--
                         return (
-                             <Homepage currentUser={currentUser} {...props} />
+                            <Homepage currentUser={currentUser} {...props} />
                         )
                     }}>
                 </Route>
@@ -61,10 +62,15 @@ const Main = props => {
                     )
                     }>
                 </Route>
-                <Route path="/users/:id/messages/new"
+                <Route path="/users/:id/blogs/new"
                     component={
-                        withAuth(MessageForm)
+                        withAuth(BlogForm)
                     }>
+                </Route>
+                <Route path="/users/:id/blogs/:blog_id"
+                    render={props => (
+                        <Blog blog_id={props.match.params.blog_id} />
+                    )}>
                 </Route>
             </Switch>
         </div>

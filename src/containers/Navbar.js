@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import logo from '../images/warbler-logo.png';
-import {logout} from '../store/actions/auth'
+import {logout} from '../store/actions/auth';
+import HeaderUserControl from '../components/HeaderUserControl';
 
 
 class Navbar extends Component {
@@ -21,12 +22,10 @@ class Navbar extends Component {
                     </div>
                     {this.props.currentUser.isAuthenticated ?
                         (<ul >
-                            <li>
-                                <Link to={`/users/${this.props.currentUser.user.id}/messages/new`}>New Message</Link>
-                            </li>
-                            <li>
-                                <Link to='/' onClick={this.logout}>Log out</Link>
-                            </li>
+                            <HeaderUserControl 
+                                    {...this.props.currentUser.user}
+                                    logout={this.logout}
+                            />
                         </ul>) :
                         (<ul >
                             <li>
