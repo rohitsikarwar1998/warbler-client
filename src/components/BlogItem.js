@@ -1,6 +1,5 @@
 import React from 'react';
 import Moment from 'react-moment';
-import { Link } from 'react-router-dom';
 import UserHover from '../components/UserHover';
 import ReactHover from 'react-hover';
 
@@ -11,7 +10,7 @@ const optionsCursorTrueWithMargin = {
 }
 
 const BlogItem = (props) => {
-    let { text, data, id,username, profileImageUrl, removeBlog, isCorrectUser, history, user_id, blog_id } = props;
+    let { text, data, id, username, profileImageUrl, history, blog_id } = props;
     let title = extractSubstring(text, "<h1>", "</h1>");
     let description = extractSubstring(text, "<p>", "</p>");
     let image = extractSubstring(text, 'src="', '"/>');

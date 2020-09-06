@@ -5,27 +5,29 @@ import logo from '../images/warbler-logo.png';
 import { logout } from '../store/actions/auth';
 import HeaderUserControl from '../components/HeaderUserControl';
 import MessageInfo from '../components/MessageInfo';
+import Search from './Search';
+
 
 
 const successfulMessage = "Congratulation you have successfully ";
 class Navbar extends Component {
 
-    constructor(){
+    constructor() {
         super();
-        this.state={
-            isLogout:false,
+        this.state = {
+            isLogout: false,
         }
-        this.postMessage=this.postMessage.bind(this);
+        this.postMessage = this.postMessage.bind(this);
     }
 
     // after showing the message below function will run
-    postMessage(){
-        this.setState({isLogout:false});
+    postMessage() {
+        this.setState({ isLogout: false });
     }
 
     logout = e => {
         e.preventDefault();
-        this.setState({isLogout:true});
+        this.setState({ isLogout: true });
         this.props.history.push('/');
         this.props.logout();
     }
@@ -39,13 +41,18 @@ class Navbar extends Component {
                     </Link>
                 </div>
                 {this.props.currentUser.isAuthenticated ?
-                    (<ul >
-                        <HeaderUserControl
-                            {...this.props.currentUser.user}
-                            logout={this.logout}
-                        />
+                    (
+                        <div className="header-left">
+                            <Search />
+                            <ul >
+                                <HeaderUserControl
+                                    {...this.props.currentUser.user}
+                                    logout={this.logout}
+                                />
 
-                    </ul>) :
+                            </ul>
+                        </div>
+                    ) :
                     (<ul >
                         <li>
                             <Link to="/signup">Sign Up</Link>
@@ -55,9 +62,9 @@ class Navbar extends Component {
                         </li>
                     </ul>)
                 }
-                {this.state.isLogout && 
-                  (<MessageInfo messageText={successfulMessage+"logout"} isGreen={true} 
-                               postMessage={this.postMessage}/>)}
+                {this.state.isLogout &&
+                    (<MessageInfo messageText={successfulMessage + "logout"} isGreen={true}
+                        postMessage={this.postMessage} />)}
             </nav>
         );
     }

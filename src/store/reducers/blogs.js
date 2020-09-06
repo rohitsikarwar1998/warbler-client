@@ -1,6 +1,7 @@
 import { LOAD_BLOGS, REMOVE_BLOG, GET_BLOG } from '../actionTypes';
 
 const blogs = (state = [], action) => {
+
     switch (action.type) {
         case LOAD_BLOGS:
             return [...action.blogs];

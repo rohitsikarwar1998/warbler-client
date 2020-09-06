@@ -5,10 +5,27 @@ import BlogItem from '../components/BlogItem';
 
 class BlogList extends Component {
     componentDidMount() {
-        this.props.fetchBlogs();
+        const text = new URLSearchParams(this.props.location.search).get("text");
+        if (text) {
+            this.props.fetchBlogs(text);
+        }
+        else {
+            this.props.fetchBlogs();
+        }
+
+
+    }
+    componentDidUpdate() {
+        const text = new URLSearchParams(this.props.location.search).get("text");
+        this.props.fetchBlogs(text);
     }
     render() {
         const { blogs, removeBlog, currentUserId } = this.props;
+
+        //if no blog is find then show the message to the user 
+        if (!blogs.length)
+            return (<h4>No Blogs Found</h4>);
+
         let blogList = blogs.map(m => (
             <BlogItem
                 history={this.props.history}
@@ -20,9 +37,10 @@ class BlogList extends Component {
                 removeBlog={removeBlog.bind(this, m.user_id, m.id)}
                 text={m.text}
                 username={m.username}
-                profileImageUrl={m.profileImageUrl} 
-                id={currentUserId}/>
+                profileImageUrl={m.profileImageUrl}
+                id={currentUserId} />
         ));
+
         return (
             <ul className="list-items">
                 {blogList}

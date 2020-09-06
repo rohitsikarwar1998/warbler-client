@@ -14,6 +14,9 @@ body {
 textarea {
   font-family: "Roboto", sans-serif;
 }
+input {
+  font-family: "Roboto", sans-serif;
+}
 
 .container {
   margin-top: 70px;
@@ -88,6 +91,36 @@ label {
   display: inline-block;
   margin-right: 10px;
   position: relative;
+  cursor: pointer;
+}
+
+.navbar .header-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .search {
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-right: 70px;
+  height: 35px;
+  border-radius: 10px;
+  background-color: #dacfcf;
+}
+
+.navbar input {
+  border: none;
+  background: none;
+  color: #ac3b61;
+}
+
+/* .navbar input:focus {
+  border: 3px solid #ac3b61;
+} */
+.navbar div {
+  color: #ac3b61;
   cursor: pointer;
 }
 
@@ -697,6 +730,7 @@ ol {
   box-sizing: border-box;
   padding: 5px 10px;
   transition: 0.5s;
+  color: #123c69;
 }
 
 .profile .i-c:focus {

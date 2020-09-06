@@ -20,6 +20,9 @@ const Main = props => {
     const { authUser, errors, removeError, currentUser } = props;
     const [isSignin, setIsSignin] = useState(false);
     const [isSignup, setIsSignup] = useState(false);
+
+
+
     return (
         <div className="container">
             <Switch>
