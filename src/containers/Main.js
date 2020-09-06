@@ -9,10 +9,17 @@ import withAuth from '../hocs/withAuth';
 import BlogForm from '../containers/BlogForm';
 import Blog from './Blog';
 import { Helmet } from 'react-helmet';
+import UserBlogList from '../components/UserBlogList';
+import { useState } from 'react';
+import MessageInfo from '../components/MessageInfo';
+import ProfileContainer from './Profile';
 
 
+const successfulMessage = "Congratulation you have successfully ";
 const Main = props => {
     const { authUser, errors, removeError, currentUser } = props;
+    const [isSignin, setIsSignin] = useState(false);
+    const [isSignup, setIsSignup] = useState(false);
     return (
         <div className="container">
             <Switch>
@@ -39,6 +46,7 @@ const Main = props => {
                                     authUser={authUser}
                                     buttonText="Log in"
                                     heading="Welcome Back!"
+                                    setSignInfo={setIsSignin}
                                     {...props} />
                             </div>
                         )
@@ -57,6 +65,7 @@ const Main = props => {
                                 authUser={authUser}
                                 buttonText="Sign up"
                                 heading="Join Warbler Today"
+                                setSignInfo={setIsSignup}
                                 {...props} />
                         </div>
                     )
@@ -68,11 +77,43 @@ const Main = props => {
                     }>
                 </Route>
                 <Route path="/users/:id/blogs/:blog_id"
-                    render={props => (
-                        <Blog blog_id={props.match.params.blog_id} />
-                    )}>
+                    render={props => {
+                        if (currentUser.isAuthenticated && Number(props.match.params.id) === currentUser.user.id) {
+                            if (props.match.params.blog_id === "saved") {
+                                return <UserBlogList
+                                    currentUser={currentUser.user}
+                                    history={props.history}
+                                    info={"saved"}
+                                />
+                            }
+                            else if (props.match.params.blog_id === "published")
+                                return <UserBlogList
+                                    currentUser={currentUser.user}
+                                    history={props.history}
+                                    info={"published"}
+                                />
+                            return <Blog blog_id={props.match.params.blog_id} />
+                        }
+
+                        else {
+                            props.history.push('/');
+                        }
+                    }}>
                 </Route>
+
+                <Route path="/users/:id/profile"
+                    render={props => {
+                        return (<ProfileContainer user_id={currentUser.user.id} />)
+                    }}>
+                </Route>
+
             </Switch>
+            {isSignin &&
+                (<MessageInfo messageText={successfulMessage + "signed in"} isGreen={true}
+                    postMessage={() => { setIsSignin(false) }} />)}
+            {isSignup &&
+                (<MessageInfo messageText={successfulMessage + "signed up"} isGreen={true}
+                    postMessage={() => { setIsSignup(false) }} />)}
         </div>
     );
 };

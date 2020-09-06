@@ -5,7 +5,7 @@ class ResponseInput extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            text:''
+            text: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,7 +17,7 @@ class ResponseInput extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        if(this.state.text!=='')this.props.handleSubmit(this.state.text);
+        if (this.state.text !== '') this.props.handleSubmit(this.state.text);
         this.setState({ text: '' });
     }
 
@@ -26,8 +26,8 @@ class ResponseInput extends Component {
         return (
             <div className="response-input">
                 <form onSubmit={this.handleSubmit}>
-                    <img src={profileImageUrl} alt="user"/>
-                    <input
+                    <img src={profileImageUrl} alt="user" />
+                    <textarea
                         value={this.state.text}
                         placeholder="write your response..."
                         onChange={this.handleChange}

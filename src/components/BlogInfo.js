@@ -6,6 +6,8 @@ import {
     deleteFollow, deleteLike, deleteSave
 } from '../store/actions/blogControls'
 
+import { calculateTime } from './ResponseItem';
+
 class BlogInfo extends React.Component {
     constructor(props) {
         super(props);
@@ -68,8 +70,10 @@ class BlogInfo extends React.Component {
         let btntext = (isFollow) ? 'Unfollow' : 'Follow';
         let liketext = (isLiked) ? 'liked' : 'like';
         let savetext = (isSaved) ? 'saved' : 'save';
-        const { user_id, profileImageUrl } = this.props.blog;
+        const { user_id, profileImageUrl, created_at } = this.props.blog;
         const userId = this.props.currentUser.id;
+
+        const datediff = calculateTime(created_at);
         return (
             <div className="bloginfo-container">
                 <div className="blog-user-info">
@@ -77,6 +81,7 @@ class BlogInfo extends React.Component {
                         <img src={profileImageUrl} alt="blog-user" />
                         <div className="username">
                             <h3>{this.props.blog.username}</h3>
+                            <span>{datediff}</span>
                         </div>
                     </div>
                     {userId !== user_id && <button className="btn" onClick={this.toggleFollow}>{btntext}</button>}

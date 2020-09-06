@@ -9,11 +9,11 @@ const HeaderUserControl=({id,profileImageUrl,username,logout})=>{
                 <span>{username}</span>
             </div>
             <div className="lower-section">
-                <Link>Profile</Link>
-                <Link>Saved</Link>
-                <Link>Published</Link>
-                <Link to='/users/:id/blogs/new'>New Story</Link>
-                <Link onClick={logout}>Log out</Link>
+                <Link to={`/users/${id}/profile`}>Profile</Link>
+                <Link to={`/users/${id}/blogs/${"saved"}`}>Saved</Link>
+                <Link to={`/users/${id}/blogs/${"published"}`}>Published</Link>
+                <Link to={`/users/${id}/blogs/new`}>New Story</Link>
+                <Link to="/" onClick={logout}>Log out</Link>
             </div>
         </li>
     );

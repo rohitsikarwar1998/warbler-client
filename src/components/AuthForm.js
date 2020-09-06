@@ -22,6 +22,7 @@ class AuthForm extends Component {
         const authType = this.props.signUp ? "signup" : "signin";
         this.props.authUser(authType, this.state)
             .then(() => {
+                this.props.setSignInfo(true);
                 this.props.history.push('/');
             })
             .catch(() => {
