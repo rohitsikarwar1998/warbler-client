@@ -20,7 +20,8 @@ export default function withAuth(ComponentToBeRendered){
 
     function mapStateToProps(state){
         return {
-            isAuthenticated:state.currentUser.isAuthenticated
+            isAuthenticated:state.currentUser.isAuthenticated,
+            user_id:state.currentUser.user.id
         };
     }
 

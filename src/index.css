@@ -7,15 +7,15 @@
 body {
   background-color: #eee2dc;
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #123c69;
 }
 
 textarea {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 input {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .container {
@@ -119,9 +119,11 @@ label {
 /* .navbar input:focus {
   border: 3px solid #ac3b61;
 } */
-.navbar div {
+.navbar button {
   color: #ac3b61;
   cursor: pointer;
+  background: none;
+  border: none;
 }
 
 .navbar .user-control {
